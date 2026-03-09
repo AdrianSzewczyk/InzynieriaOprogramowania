@@ -13,4 +13,6 @@ public interface LibraryDao {
 
     List<Library> findByBook(Book m);
 
+    Library save(Library library);
+
 }

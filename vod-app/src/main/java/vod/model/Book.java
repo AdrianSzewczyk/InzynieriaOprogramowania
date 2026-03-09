@@ -1,6 +1,7 @@
 package vod.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.smallrye.common.constraint.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;

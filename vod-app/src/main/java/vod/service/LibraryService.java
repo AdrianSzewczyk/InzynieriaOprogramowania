@@ -14,5 +14,6 @@ public interface LibraryService {
     List<Library> getLibrarysByBook(Book m);
 
     List<Book> getBooksInLibrary(Library c);
+    Library addLibrary(Library c);
 
 }

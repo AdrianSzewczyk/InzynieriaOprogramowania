@@ -1,0 +1,44 @@
+### GET request to example server
+GET http://localhost:8080/webapi/libraries
+
+###
+GET http://localhost:8080/webapi/libraries/1
+
+###
+GET http://localhost:8080/webapi/libraries?title#abc
+custom-header: custom-value
+
+###
+GET http://localhost:8080/webapi/books/1/libraries
+
+
+###
+POST http://localhost:8080/webapi/libraries
+Content-Type: application/json
+Accept-Language: pl
+
+{
+  "name": "Miejska Biblioteka Gliwice",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/7/71/Gda%C5%84sk_ulica_Wa%C5%82owa_15.JPG"
+}
+
+### KSIAZKI
+POST http://localhost:8080/webapi/books
+Content-Type: application/json
+Accept-Language: pl
+
+{
+  "title": "IO",
+  "poster": "https://upload.wikimedia.org/wikipedia/commons/7/71/Gda%C5%84sk_ulica_Wa%C5%82owa_15.JPG",
+  "rating": 4.5,
+  "director": {"id": 4}
+}
+
+###
+GET http://localhost:8080/webapi/books
+
+###
+GET http://localhost:8080/webapi/books/1
+
+###
+GET http://localhost:8080/webapi/libraries/1/books
