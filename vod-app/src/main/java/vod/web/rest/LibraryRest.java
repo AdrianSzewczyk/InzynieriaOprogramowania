@@ -39,6 +39,9 @@ public class LibraryRest {
         log.info("about to retrieve Librarys list");
         log.info("title: {}", title);
         log.info("customHeader: {}", customHeader);
+        if(title!=null && title.equals("foo")) {
+            throw new IllegalArgumentException("Foo!");
+        }
         List<Library> librarys = libraryService.getAllLibrarys();
         log.info("{} Librarys found", librarys.size());
         return librarys;

@@ -1,22 +1,38 @@
 package vod.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.smallrye.common.annotation.Identifier;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name="library")
 public class Library {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotNull//(message = "{NotNull.library.name}")
     @Size(min = 2, max = 20)//, message = "{Size.library.name}")
     private String name;
+
+    @Column(name="logo")
     private String logo; //url logo w przypadku UI będzie zaciągany dynamicznie
+
+    @ManyToMany(mappedBy="libraries")
     @JsonIgnore
     private List<Book> books = new ArrayList<>();//struktura kolekcyjna związaną z granymi filmami, uproszczone
 //relacja wiele do wiele
+
+    @Transient
+    @JsonIgnore
+    private int foo;
+
     public Library(int id, String name, String logo) {//konsturktor
         this.id = id;
         this.name = name;

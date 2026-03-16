@@ -1,18 +1,30 @@
 package vod.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.smallrye.common.annotation.Identifier;
 import io.smallrye.common.constraint.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Book {
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
+
     private String title;
     private String poster;//url
+
+    @ManyToOne
+    @JoinColumn(name="author_id")
     private Author author;//relacja do rezysera - kolejny obiekt danych w uproszczeniu założenie że jeden film ma 1 reżysera
     private float rating;//rating
+
+    @ManyToMany
+    @JoinTable(name="book_library",joinColumns=@JoinColumn(name="book_id",referencedColumnName="id"),
+    inverseJoinColumns=@JoinColumn(name="library_id",referencedColumnName="id"))
     private List<Library> librarys = new ArrayList<>();
 //relacja wiele do wiele - bidirectional
 
