@@ -3,6 +3,7 @@ package vod.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.smallrye.common.annotation.Identifier;
 import io.smallrye.common.constraint.NotNull;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
 
     private String title;

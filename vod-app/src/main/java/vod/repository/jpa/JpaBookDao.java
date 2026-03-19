@@ -1,8 +1,12 @@
 package vod.repository.jpa;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
+import vod.model.Author;
 import vod.model.Book;
+import vod.model.Library;
 import vod.repository.BookDao;
 
 import java.util.List;
@@ -35,7 +39,7 @@ public class JpaBookDao implements BookDao {
     @Override
     public List<Book> findByLibrary(Library l){
         return entityManager.createQuery(
-                "select book from Book book inner join book.libraries library where library=:library"
+                "select book from Book book inner join book.librarys library where library=:library"
         ).setParameter("library",l)
                 .getResultList();
     }

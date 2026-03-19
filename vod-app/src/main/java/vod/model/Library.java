@@ -2,11 +2,12 @@ package vod.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.smallrye.common.annotation.Identifier;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-import java.beans.Transient;
+
 import java.util.ArrayList;
 import java.util.List;
 
