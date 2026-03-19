@@ -22,7 +22,10 @@ public class DataLibraryDao implements LibraryDao {
     public Library findById(int id) {return libraryRepository.findById(id).orElse(null);}
 
     @Override
-    public List<Library> findByBook(Book book){return libraryRepository.findAllByBook(book);}
+    public List<Library> findByBook(Book book) {
+        return libraryRepository.findAllByBookId(book.getId());
+    }
+
 
     @Override
     public Library save(Library library) {return libraryRepository.save(library);}
