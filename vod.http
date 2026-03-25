@@ -16,10 +16,10 @@ GET http://localhost:8080/webapi/books/1/libraries
 POST http://localhost:8080/webapi/libraries
 Content-Type: application/json
 Accept-Language: pl
-Authorization: Basic user2 user1
+Authorization: Basic dbuser2 dbuser2 //ZGJ1c2VyMTpkYnVzZXIx = Base64("dbuser1:dbuser1")
 
 {
-  "name": "Miejska Biblioteka Gliwice",
+  "name": "Miejska Bib",
   "logo": "https://upload.wikimedia.org/wikipedia/commons/7/71/Gda%C5%84sk_ulica_Wa%C5%82owa_15.JPG"
 }
 

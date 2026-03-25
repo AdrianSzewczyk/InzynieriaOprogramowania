@@ -26,9 +26,9 @@ public class BookServiceBean implements BookService {
 
     private static final Logger log = Logger.getLogger(BookService.class.getName());
 
-    private AuthorDao authorDao;
-    private LibraryDao libraryDao;
-    private BookDao bookDao;
+    private final AuthorDao authorDao;
+    private final LibraryDao libraryDao;
+    private final BookDao bookDao;
     private final PlatformTransactionManager transactionManager;
 
     /*public BookServiceBean(AuthorDao authorDao, @Qualifier("LibraryDao") LibraryDao libraryDao, BookDao bookDao ){
