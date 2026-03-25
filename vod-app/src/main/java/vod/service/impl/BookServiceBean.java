@@ -1,8 +1,14 @@
 package vod.service.impl;
 
+import io.undertow.util.Transfer;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 import vod.repository.LibraryDao;
 import vod.repository.AuthorDao;
 import vod.repository.BookDao;
@@ -13,7 +19,9 @@ import vod.service.BookService;
 
 import java.util.List;
 import java.util.logging.Logger;
+
 @Service
+@RequiredArgsConstructor
 public class BookServiceBean implements BookService {
 
     private static final Logger log = Logger.getLogger(BookService.class.getName());
@@ -21,12 +29,14 @@ public class BookServiceBean implements BookService {
     private AuthorDao authorDao;
     private LibraryDao libraryDao;
     private BookDao bookDao;
+    private final PlatformTransactionManager transactionManager;
 
-    public BookServiceBean(AuthorDao authorDao, @Qualifier("LibraryDao") LibraryDao libraryDao, BookDao bookDao) {
+    /*public BookServiceBean(AuthorDao authorDao, @Qualifier("LibraryDao") LibraryDao libraryDao, BookDao bookDao ){
         this.authorDao = authorDao;
         this.libraryDao = libraryDao;
         this.bookDao = bookDao;
-    }
+
+    }*/
 
     public List<Book> getAllBooks() {
         log.info("searching all Books...");
@@ -76,7 +86,18 @@ public class BookServiceBean implements BookService {
     @Override
     public Book addBook(Book m) {
         log.info("about to add Book " + m);
-        return bookDao.add(m);
+        TransactionStatus ts = transactionManager.getTransaction(new DefaultTransactionDefinition());
+        try{
+            m = bookDao.add(m);
+            if(m.getTitle().equals("Apocalypse Now")){
+                throw new RuntimeException("not yet");
+            }
+            transactionManager.commit(ts);
+        }catch(RuntimeException e){
+            transactionManager.rollback(ts);
+            throw e;
+        }
+        return m;
     }
 
     @Override

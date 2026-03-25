@@ -12,7 +12,7 @@ import vod.repository.BookDao;
 import java.util.List;
 
 @Repository
-@Primary
+
 public class JpaBookDao implements BookDao {
 
     @PersistenceContext

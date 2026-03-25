@@ -2,6 +2,7 @@ package vod.service.impl;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import vod.model.Library;
@@ -51,6 +52,7 @@ public class LibraryServiceBean implements LibraryService {
         return libraryDao.findByBook(m);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     public Library addLibrary(Library library) {
         log.info("adding Library " + library);

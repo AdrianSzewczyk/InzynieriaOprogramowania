@@ -16,6 +16,7 @@ GET http://localhost:8080/webapi/books/1/libraries
 POST http://localhost:8080/webapi/libraries
 Content-Type: application/json
 Accept-Language: pl
+Authorization: Basic user2 user1
 
 {
   "name": "Miejska Biblioteka Gliwice",
