@@ -1,3 +1,5 @@
 **/target
 **/*.iml
 **/.idea
+*.sock
+docker-vod/docker-vod/mysql/data/
